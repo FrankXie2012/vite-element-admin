@@ -148,6 +148,7 @@ export const tableConfig = {
   height: 'auto',
   highlightHoverRow: true,
   highlightCurrentRow: true,
+  emptyText: '没有更多数据了！',
   rowId: 'id',
   checkboxConfig: {
     reserve: true
