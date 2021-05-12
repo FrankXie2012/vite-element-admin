@@ -13,7 +13,7 @@
 
 <script>
 import {reactive} from 'vue'
-import {tableConfig} from '/@/components/utils'
+import {tableConfig} from '../components/utils'
 export default {
   setup() {
     const gridOptions = reactive(

@@ -1,19 +1,19 @@
 // 权限控制
 export function authCheck(val) {
-  const authList = this.$store.state.login.authList
-  const userInfo = this.$store.state.login.userInfo
-  let account = ''
-  if (userInfo && userInfo.account) {
-    account = userInfo.account
-  }
-  if (val === 'structHistory' && account == 'gudj') {
-    return false
-  }
-  if (val == 'structHistory1' && account == 'gudj') {
-    return true
-  } else if (val == 'structHistory1') {
-    return false
-  }
+  // const authList = this.$store.state.login.authList
+  // const userInfo = this.$store.state.login.userInfo
+  // let account = ''
+  // if (userInfo && userInfo.account) {
+  //   account = userInfo.account
+  // }
+  // if (val === 'structHistory' && account == 'gudj') {
+  //   return false
+  // }
+  // if (val == 'structHistory1' && account == 'gudj') {
+  //   return true
+  // } else if (val == 'structHistory1') {
+  //   return false
+  // }
   //   if (authList.includes(val)) {
   // console.log(val)
   return true
