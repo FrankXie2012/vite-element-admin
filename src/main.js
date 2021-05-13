@@ -22,7 +22,7 @@ app.use(ElementPlus)
 app.use(VXETable)
 app.use(router)
 app.use(store)
-// app.use(i18n)
+app.use(i18n)
 app.mount('#app')
 
 app.config.globalProperties.$request = request

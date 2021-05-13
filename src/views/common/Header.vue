@@ -1,22 +1,56 @@
 <template>
   <el-header class="main-header">
-    <el-menu mode="horizontal" menu-trigger="click" unique-opened class="main-header-menu">
-      <el-submenu index="1">
-        <template #title>语言</template>
-        <el-menu-item index="1-1">中文</el-menu-item>
-        <el-menu-item index="1-2">英文</el-menu-item>
-      </el-submenu>
-      <el-submenu index="2">
-        <template #title>用户名</template>
-        <el-menu-item index="2-1">修改密码</el-menu-item>
-        <el-menu-item index="2-2">登出</el-menu-item>
-      </el-submenu>
-    </el-menu>
+    <el-dropdown class="main-header-dropdown">
+      <div>{{ username }} <i class="el-icon-arrow-down el-icon--right"></i></div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>{{ $t('common.modifyPwd') }}</el-dropdown-item>
+          <el-dropdown-item>{{ $t('common.logout') }}</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown class="main-header-dropdown" @command="selectLang">
+      <div>{{ lang }} <i class="el-icon-arrow-down el-icon--right"></i></div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item v-for="item in langList" :key="item.lang" :command="item.lang">
+            {{ item.title }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </el-header>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      lang: '简体中文',
+      langList: [
+        {lang: 'zh_CN', title: '简体中文'},
+        {lang: 'en_US', title: 'English'}
+      ]
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.username
+    }
+  },
+  created() {
+    const lang = this.langList.find((v) => v.lang === localStorage.getItem('lang'))
+    this.lang = lang.title
+  },
+  methods: {
+    selectLang(cmd) {
+      this.$i18n.locale = cmd
+      const lang = this.langList.find((v) => v.lang === cmd)
+      this.lang = lang.title
+      this.$store.commit('setLang', cmd)
+    }
+  }
+}
 </script>
 
 <style lang="less">
@@ -29,5 +63,11 @@ export default {}
 }
 .main-header-menu {
   float: right;
+}
+.main-header-dropdown {
+  float: right;
+  padding: 0 20px;
+  height: 60px;
+  line-height: 60px;
 }
 </style>

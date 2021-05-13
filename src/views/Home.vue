@@ -1,12 +1,12 @@
 <template>
   <vxe-grid v-bind="gridOptions">
     <template #toolbar_buttons>
-      <vxe-input v-model="searchName" placeholder="搜索"></vxe-input>
-      <vxe-button status="primary">搜索</vxe-button>
-      <vxe-button>刷新</vxe-button>
-      <vxe-button>新增</vxe-button>
-      <vxe-button>保存</vxe-button>
-      <vxe-button>导出</vxe-button>
+      <vxe-input v-model="searchName" :placeholder="$t('common.search')"></vxe-input>
+      <vxe-button status="primary">{{ $t('common.search') }}</vxe-button>
+      <vxe-button>{{ $t('common.add') }}</vxe-button>
+      <vxe-button>{{ $t('common.edit') }}</vxe-button>
+      <vxe-button>{{ $t('common.save') }}</vxe-button>
+      <vxe-button>{{ $t('common.export') }}</vxe-button>
     </template>
   </vxe-grid>
 </template>

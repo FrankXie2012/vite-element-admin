@@ -1,21 +1,20 @@
 import {createI18n} from 'vue-i18n'
-// const modules = import.meta.glob('./*')
-// import zhCN from 'vxe-table/lib/locale/lang/zh-CN'
-// import enUS from 'vxe-table/lib/locale/lang/en-US'
-// const zhCN = require('vxe-table/lib/locale/lang/zh-CN')
-// const enUS = require('vxe-table/lib/locale/lang/en-US')
+import zhCN from './zh-CN'
+import enUS from './en-US'
 
 const messages = {
-  // zh_CN: {
-  //   ...zhCN
-  // },
-  // en_US: {
-  //   ...enUS
-  // }
+  zh_CN: {
+    ...zhCN
+  },
+  en_US: {
+    ...enUS
+  }
 }
 
+const lang = localStorage.getItem('lang') || 'zh_CN'
 const i18n = createI18n({
-  locale: 'zh_CN',
+  locale: lang,
+  fallbackLocale: lang,
   messages
 })
 

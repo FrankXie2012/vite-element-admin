@@ -1,5 +1,6 @@
 let state = {
-  username: 'admin'
+  username: 'admin',
+  lang: localStorage.getItem('lang') || 'zh_CN'
 }
 
 export default state

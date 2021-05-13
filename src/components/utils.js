@@ -1,3 +1,5 @@
+import i18n from '../i18n'
+
 // 权限控制
 export function authCheck(val) {
   // const authList = this.$store.state.login.authList
@@ -148,7 +150,7 @@ export const tableConfig = {
   height: 'auto',
   highlightHoverRow: true,
   highlightCurrentRow: true,
-  emptyText: '没有更多数据了！',
+  emptyText: i18n.global.t('vxe.custom.noData'),
   rowId: 'id',
   checkboxConfig: {
     reserve: true
