@@ -1,12 +1,12 @@
 <template>
   <el-container>
     <Header></Header>
-    <el-container>
-      <el-main class="main-body">
+    <el-main class="main-body">
+      <el-container>
         <Aside></Aside>
         <router-view></router-view>
-      </el-main>
-    </el-container>
+      </el-container>
+    </el-main>
   </el-container>
 </template>
 
@@ -27,10 +27,23 @@ export default {
 </script>
 <style lang="less">
 .main-body {
-  margin-left: 240px;
+  padding: 0;
   margin-top: 60px;
   height: calc(100vh - 60px);
   overflow: auto;
   background-color: #efefef;
+}
+.main {
+  overflow: auto;
+  height: calc(100vh - 100px);
+  margin: 20px;
+  width: 100%;
+}
+.elevator {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 9px 0 rgba(0, 0, 0, 0.12) !important;
+}
+.fs-18 {
+  font-size: 18px;
 }
 </style>

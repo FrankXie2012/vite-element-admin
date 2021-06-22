@@ -7,7 +7,11 @@ export default {
     export: 'Export',
     search: 'Search',
     modifyPwd: 'Modify Password',
-    logout: 'Logout'
+    logout: 'Logout',
+    collapse: 'collapse sidebar'
+  },
+  menu: {
+    home: 'Home'
   },
   vxe: {
     custom: {

@@ -7,7 +7,11 @@ export default {
     export: '导出',
     search: '搜索',
     modifyPwd: '修改密码',
-    logout: '登出'
+    logout: '登出',
+    collapse: '收起'
+  },
+  menu: {
+    home: '首页'
   },
   vxe: {
     custom: {
