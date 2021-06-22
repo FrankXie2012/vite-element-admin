@@ -39,8 +39,13 @@ export default {
     }
   },
   created() {
-    const lang = this.langList.find((v) => v.lang === localStorage.getItem('lang'))
-    this.lang = lang.title
+    const defaultLang =
+      localStorage.getItem('lang') ||
+      this.$store.state.lang ||
+      navigator.language ||
+      navigator.userLanguage
+    const lang = this.langList.find((v) => v.lang === defaultLang)
+    this.lang = lang && lang.title
   },
   methods: {
     selectLang(cmd) {
@@ -58,8 +63,13 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
-  width: calc(100vw - 240px);
+  width: calc(100vw);
   padding: 0;
+  background-color: #0d305f;
+  color: #fff;
+  .el-dropdown {
+    color: #fff;
+  }
 }
 .main-header-menu {
   float: right;
