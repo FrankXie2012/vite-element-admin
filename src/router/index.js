@@ -16,19 +16,76 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      redirect: '/home',
+      redirect: '/dashboard',
       meta: {
         requireAuth: true
       },
       component: () => import('../views/common/Index.vue'),
       children: [
         {
-          path: '/home',
-          name: 'home',
+          path: '/dashboard',
+          name: 'dashboard',
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/Home.vue')
+          component: () => import('../views/dashboard/Index.vue')
+        },
+        {
+          path: '/geo',
+          name: 'geo',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/geo/Index.vue')
+        },
+        {
+          path: '/app',
+          name: 'app',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/app/Index.vue')
+        },
+        {
+          path: '/push',
+          name: 'push',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/push/Index.vue')
+        },
+        {
+          path: '/merchant',
+          name: 'merchant',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/merchant/Index.vue')
+        }
+        ,{
+          path: '/terminal',
+          name: 'terminal',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/terminal/Index.vue')
+        }
+        ,
+        {
+          path: '/report',
+          name: 'report',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/report/Index.vue')
+        },
+        {
+          path: '/admin',
+          name: 'admin',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('../views/admin/Index.vue')
         }
       ]
     }

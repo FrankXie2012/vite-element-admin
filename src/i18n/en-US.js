@@ -11,7 +11,15 @@ export default {
     collapse: 'collapse sidebar'
   },
   menu: {
-    home: 'Home'
+    overview: 'Overview',
+    dashboard: 'Dashboard',
+    geo: 'Geo Location',
+    app: 'App',
+    push: 'Push',
+    merchant: 'Merchant',
+    terminal: 'Terminal',
+    report: 'Report',
+    admin: 'Admin'
   },
   vxe: {
     custom: {

@@ -8,11 +8,11 @@
     :collapse="isCollapse"
   >
     <template v-for="sub in menu" :key="sub.path">
-      <el-menu-item v-if="!sub.items && $authCheck(sub.auth)" :index="sub.path">
+      <el-menu-item v-if="!sub.items && $authCheck(sub.auth)" :index="sub.auth">
         <i :class="sub.icon"></i>
         <template #title>{{ sub.name }}</template>
       </el-menu-item>
-      <el-submenu v-else-if="$authCheck(sub.auth)" :index="sub.path">
+      <el-submenu v-else-if="$authCheck(sub.auth)" :index="sub.auth">
         <template #title>
           <i :class="sub.icon"></i>
           <span>{{ sub.name }}</span>
@@ -40,56 +40,59 @@ export default {
     menu() {
       return [
         {
-          name: this.$t('menu.home'),
-          auth: 'home',
-          icon: 'el-icon-house',
-          path: '/home'
-        },
-        {
-          name: '设备管理',
-          auth: 'device',
-          icon: 'el-icon-monitor',
-          path: '/device'
-        },
-        {
-          name: '用户管理',
-          auth: 'user',
-          icon: 'el-icon-user',
-          path: '/user'
-        },
-        {
-          name: '统计分析',
-          icon: 'el-icon-pie-chart',
-          path: '1',
-          auth: 'stats',
+          name: this.$t('menu.overview'),
+          icon: 'el-icon-menu',
+          auth: 'overview',
           items: [
             {
-              name: '设备数据',
-              auth: 'deviceData',
-              icon: 'el-icon-data-line',
-              path: '/deviceData'
-            }
-          ]
-        },
-        {
-          name: '系统设置',
-          icon: 'el-icon-setting',
-          path: '2',
-          auth: 'system',
-          items: [
-            {
-              name: '型号管理',
-              auth: 'model',
-              icon: 'el-icon-cpu',
-              path: '/model'
+              name: this.$t('menu.dashboard'),
+              auth: 'dashboard',
+              icon: 'el-icon-house',
+              path: '/dashboard'
             },
             {
-              name: '操作员管理',
-              auth: 'sysUser',
-              icon: 'el-icon-set-up',
-              path: '/sysUser'
+              name: this.$t('menu.geo'),
+              auth: 'geo',
+              icon: 'el-icon-location-outline',
+              path: '/geo'
             }
           ]
+        },
+        {
+          name: this.$t('menu.app'),
+          auth: 'app',
+          icon: 'el-icon-mobile-phone',
+          path: '/app'
+        },
+        {
+          name: this.$t('menu.push'),
+          auth: 'push',
+          icon: 'el-icon-s-promotion',
+          path: '/push'
+        },
+        {
+          name: this.$t('menu.merchant'),
+          auth: 'merchant',
+          icon: 'el-icon-s-shop',
+          path: '/merchant'
+        },
+        {
+          name: this.$t('menu.terminal'),
+          auth: 'terminal',
+          icon: 'el-icon-monitor',
+          path: '/terminal'
+        },
+        {
+          name: this.$t('menu.report'),
+          auth: 'report',
+          icon: 'el-icon-files',
+          path: '/report'
+        },
+        {
+          name: this.$t('menu.admin'),
+          auth: 'admin',
+          icon: 'el-icon-user',
+          path: '/admin'
         }
       ]
     }

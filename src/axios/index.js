@@ -8,10 +8,10 @@ axios.defaults.baseURL = ajax.baseURL || ''
 
 // 添加请求拦截器
 axios.interceptors.request.use((config) => {
-  const token = store.state.login.userInfo.token
-  if (config.url !== 'manage/getTokenByUid') {
-    config.headers['Authorization'] = token
-  }
+  // const token = store.state.login.userInfo.token
+  // if (config.url !== 'manage/getTokenByUid') {
+  //   config.headers['Authorization'] = token
+  // }
   return config
 })
 
@@ -72,13 +72,6 @@ const request = function (...opt) {
       axiosConfig
     )
       .then((res) => {
-        // 打印Mock请求
-        if (process.env.NODE_ENV === 'development' && axios.defaults.baseURL === '/') {
-          console.groupCollapsed(`${method.toUpperCase()} ${opt.url}`)
-          console.log(opt)
-          console.log(res)
-          console.groupEnd()
-        }
         // 流文件
         if (
           res.headers['content-type'] === 'application/octet-stream' ||
@@ -86,7 +79,7 @@ const request = function (...opt) {
         ) {
           return resolve(res)
         }
-        if (res.data && res.data.code === '00') {
+        if (res.data && res.data.code === '200') {
           resolve(res.data)
         } else {
           reject(res.data)

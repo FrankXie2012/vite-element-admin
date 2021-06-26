@@ -11,7 +11,15 @@ export default {
     collapse: '收起'
   },
   menu: {
-    home: '首页'
+    overview: '总览',
+    dashboard: '首页',
+    geo: '定位',
+    app: '应用',
+    push: '推送',
+    merchant: '商户',
+    terminal: '终端',
+    report: '报告',
+    admin: '管理'
   },
   vxe: {
     custom: {

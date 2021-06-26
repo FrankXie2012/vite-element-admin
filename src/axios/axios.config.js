@@ -3,8 +3,7 @@ import {ElLoading} from 'element-plus'
 
 const ajax = {
   // baseURL: '/qms/', // Mock
-  // baseURL: 'https://47.102.135.57:8808/', // 真实数据
-  baseURL: 'https://www.sr-bridgesurfacing.com:4433/zms/', // 真实数据
+  baseURL: 'http://121.41.13.18:8280/market/', // 真实数据
   timeOut: 3000 * 1000,
   type: 'post',
   dataType: 'json',

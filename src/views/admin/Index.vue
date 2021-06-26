@@ -14,10 +14,11 @@
 </template>
 
 <script>
-import {reactive} from 'vue'
-import {tableConfig} from '../components/utils'
+import {inject, reactive} from 'vue'
+import {tableConfig} from '../../components/utils'
 export default {
   setup() {
+    const $request = inject('$request')
     const gridOptions = reactive(
       Object.assign({}, tableConfig, {
         toolbarConfig: {
@@ -44,17 +45,11 @@ export default {
           ajax: {
             // 接收 Promise
             query: async ({page}) => {
-              const list = [
-                // {
-                //   id: 10001,
-                //   name: 'Test1',
-                //   nickname: 'T1',
-                //   role: 'Develop',
-                //   sex: 'Man',
-                //   age: 28,
-                //   address: 'Shenzhen'
-                // }
-              ]
+              const res = await $request({
+                url: 'user/page',
+                data: {}
+              })
+              let list = res.data.list
               return {
                 page: {
                   total: list.length
