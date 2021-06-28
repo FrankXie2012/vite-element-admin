@@ -8,18 +8,29 @@ export default {
     search: 'Search',
     modifyPwd: 'Modify Password',
     logout: 'Logout',
-    collapse: 'collapse sidebar'
-  },
-  menu: {
+    collapse: 'collapse sidebar',
+    list: 'List',
+    version: 'Version',
+    required: 'Required',
+    market: 'Market',
+    // menu
     overview: 'Overview',
     dashboard: 'Dashboard',
-    geo: 'Geo Location',
+    geo: 'Geo-Location',
     app: 'App',
     push: 'Push',
     merchant: 'Merchant',
     terminal: 'Terminal',
     report: 'Report',
     admin: 'Admin'
+  },
+  login: {
+    username: 'Username',
+    password: 'Password',
+    captcha: 'Captcha',
+    login: 'Sign in',
+    rememberMe: 'Remember me',
+    forgetPwd: 'Forget password'
   },
   vxe: {
     custom: {

@@ -2,12 +2,15 @@
   <div class="main elevator">
     <vxe-grid v-bind="gridOptions">
       <template #toolbar_buttons>
-        <vxe-input v-model="searchName" :placeholder="$t('common.search')"></vxe-input>
+        <el-button type="primary" @click="onSubmit">
+          {{ $t('login.login') }}
+        </el-button>
+        <!-- <vxe-input v-model="searchName" :placeholder="$t('common.search')"></vxe-input>
         <vxe-button status="primary">{{ $t('common.search') }}</vxe-button>
         <vxe-button>{{ $t('common.add') }}</vxe-button>
         <vxe-button>{{ $t('common.edit') }}</vxe-button>
         <vxe-button>{{ $t('common.save') }}</vxe-button>
-        <vxe-button>{{ $t('common.export') }}</vxe-button>
+        <vxe-button>{{ $t('common.export') }}</vxe-button> -->
       </template>
     </vxe-grid>
   </div>
@@ -22,8 +25,8 @@ export default {
     const gridOptions = reactive(
       Object.assign({}, tableConfig, {
         toolbarConfig: {
-          custom: true,
-          refresh: true,
+          // custom: true,
+          // refresh: true,
           slots: {
             buttons: 'toolbar_buttons'
           }
@@ -65,6 +68,11 @@ export default {
       })
     )
     return {gridOptions, searchName: ''}
+  },
+  methods: {
+    onSubmit() {
+      console.log('abc')
+    }
   }
 }
 </script>

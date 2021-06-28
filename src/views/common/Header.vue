@@ -3,8 +3,9 @@
     <div class="main-header-left">
       <img src="../../assets/logo.png" />
       <el-breadcrumb separator-class="el-icon-arrow-right" class="main-header-breadcrumb">
-        <el-breadcrumb-item>Dashboard</el-breadcrumb-item>
-        <el-breadcrumb-item>Test</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(route, i) in routeList" :key="i">
+          {{ $t(`common.${route}`) }}
+        </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <el-dropdown class="main-header-dropdown">
@@ -33,6 +34,11 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    <div class="main-header-dropdown">
+      <el-badge is-dot type="danger" class="item">
+        <i class="el-icon-bell fs-18"></i>
+      </el-badge>
+    </div>
   </el-header>
 </template>
 
@@ -50,6 +56,13 @@ export default {
   computed: {
     username() {
       return this.$store.state.username
+    },
+    routeList() {
+      let list = this.$route.path.split('/').filter((v) => !!v)
+      if (list.length < 2) {
+        list.push('list')
+      }
+      return list
     }
   },
   created() {
@@ -97,10 +110,15 @@ export default {
   float: right;
 }
 .main-header-dropdown {
+  cursor: pointer;
   float: right;
   padding: 0 20px;
   height: 60px;
   line-height: 60px;
+  .el-badge__content.is-fixed.is-dot {
+    top: 22px;
+    right: 7px;
+  }
 }
 .img-flag {
   width: 24px;

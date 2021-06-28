@@ -23,6 +23,11 @@ export function authCheck(val) {
   //   return false
 }
 
+// 单词首字母大写
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 /**
  * Stringify an object for use in a query string.
  *

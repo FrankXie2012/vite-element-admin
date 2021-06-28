@@ -8,7 +8,11 @@
     :collapse="isCollapse"
   >
     <template v-for="sub in menu" :key="sub.path">
-      <el-menu-item v-if="!sub.items && $authCheck(sub.auth)" :index="sub.auth">
+      <el-menu-item
+        v-if="!sub.items && $authCheck(sub.auth)"
+        :index="sub.auth"
+        :class="checkActive(sub)"
+      >
         <i :class="sub.icon"></i>
         <template #title>{{ sub.name }}</template>
       </el-menu-item>
@@ -24,7 +28,7 @@
     </template>
     <el-button type="text" class="collapse-btn" @click="collapse">
       <i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i>
-      {{ isCollapse ? '' : $t('common.collapse') }}
+      {{ isCollapse ? '&nbsp;' : $t('common.collapse') }}
     </el-button>
   </el-menu>
 </template>
@@ -40,18 +44,18 @@ export default {
     menu() {
       return [
         {
-          name: this.$t('menu.overview'),
+          name: this.$t('common.overview'),
           icon: 'el-icon-menu',
           auth: 'overview',
           items: [
             {
-              name: this.$t('menu.dashboard'),
+              name: this.$t('common.dashboard'),
               auth: 'dashboard',
               icon: 'el-icon-house',
               path: '/dashboard'
             },
             {
-              name: this.$t('menu.geo'),
+              name: this.$t('common.geo'),
               auth: 'geo',
               icon: 'el-icon-location-outline',
               path: '/geo'
@@ -59,37 +63,37 @@ export default {
           ]
         },
         {
-          name: this.$t('menu.app'),
+          name: this.$t('common.app'),
           auth: 'app',
           icon: 'el-icon-mobile-phone',
           path: '/app'
         },
         {
-          name: this.$t('menu.push'),
+          name: this.$t('common.push'),
           auth: 'push',
           icon: 'el-icon-s-promotion',
           path: '/push'
         },
         {
-          name: this.$t('menu.merchant'),
+          name: this.$t('common.merchant'),
           auth: 'merchant',
           icon: 'el-icon-s-shop',
           path: '/merchant'
         },
         {
-          name: this.$t('menu.terminal'),
+          name: this.$t('common.terminal'),
           auth: 'terminal',
           icon: 'el-icon-monitor',
           path: '/terminal'
         },
         {
-          name: this.$t('menu.report'),
+          name: this.$t('common.report'),
           auth: 'report',
           icon: 'el-icon-files',
           path: '/report'
         },
         {
-          name: this.$t('menu.admin'),
+          name: this.$t('common.admin'),
           auth: 'admin',
           icon: 'el-icon-user',
           path: '/admin'
@@ -100,15 +104,28 @@ export default {
   methods: {
     collapse() {
       this.isCollapse = !this.isCollapse
+    },
+    checkActive(item) {
+      if (this.$route.name === item.name) {
+        return 'is-active'
+      } else {
+        return ''
+      }
     }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+.el-menu--collapse {
+  .collapse-btn {
+    width: 60px;
+  }
+}
 .collapse-btn {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 200px;
+  height: 40px;
   left: 0;
   bottom: 0;
   color: #7c7c85;
@@ -123,13 +140,34 @@ export default {
 }
 .aside-menu {
   height: calc(100vh - 60px);
+  overflow-y: auto;
   text-align: left;
   .el-submenu .el-menu-item {
     padding-left: 50px !important;
   }
+  .el-submenu.is-active {
+    border-left: 3px solid #0d305f;
+    background-color: #f7f8fb;
+    .el-submenu__title span {
+      font-weight: bold;
+      color: #023d8b;
+    }
+    .el-menu-item {
+      background-color: #f7f8fb;
+      &.is-active {
+        border-left: none;
+      }
+    }
+  }
+  .el-menu-item.is-active {
+    color: #023d8b;
+    font-weight: bold;
+    background-color: #f7f8fb;
+    border-left: 3px solid #0d305f;
+  }
 }
 .aside-menu:not(.el-menu--collapse) {
-  width: 200px;
+  width: 238px;
   min-height: 400px;
 }
 </style>

@@ -15,7 +15,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'index',
+      name: 'dashboard',
       redirect: '/dashboard',
       meta: {
         requireAuth: true
@@ -61,16 +61,15 @@ const router = createRouter({
             requireAuth: true
           },
           component: () => import('../views/merchant/Index.vue')
-        }
-        ,{
+        },
+        {
           path: '/terminal',
           name: 'terminal',
           meta: {
             requireAuth: true
           },
           component: () => import('../views/terminal/Index.vue')
-        }
-        ,
+        },
         {
           path: '/report',
           name: 'report',

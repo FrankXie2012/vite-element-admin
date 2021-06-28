@@ -8,18 +8,29 @@ export default {
     search: '搜索',
     modifyPwd: '修改密码',
     logout: '登出',
-    collapse: '收起'
-  },
-  menu: {
+    collapse: '收起',
+    list: '列表',
+    version: '版本',
+    required: '必填',
+    market: '市场',
+    // 菜单
     overview: '总览',
     dashboard: '首页',
     geo: '定位',
-    app: '应用',
-    push: '推送',
-    merchant: '商户',
-    terminal: '终端',
-    report: '报告',
-    admin: '管理'
+    app: '应用管理',
+    push: '推送管理',
+    merchant: '商户管理',
+    terminal: '终端管理',
+    report: '报告管理',
+    admin: '系统管理'
+  },
+  login: {
+    username: '用户名',
+    password: '密码',
+    captcha: '验证码',
+    login: '登录',
+    rememberMe: '记住我',
+    forgetPwd: '忘记密码'
   },
   vxe: {
     custom: {
