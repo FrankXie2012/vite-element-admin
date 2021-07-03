@@ -34,140 +34,140 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      isCollapse: false
-    }
-  },
-  computed: {
-    menu() {
-      return [
-        {
-          name: this.$t('common.overview'),
-          icon: 'el-icon-menu',
-          auth: 'overview',
-          items: [
-            {
-              name: this.$t('common.dashboard'),
-              auth: 'dashboard',
-              icon: 'el-icon-house',
-              path: '/dashboard'
-            },
-            {
-              name: this.$t('common.geo'),
-              auth: 'geo',
-              icon: 'el-icon-location-outline',
-              path: '/geo'
-            }
-          ]
-        },
-        {
-          name: this.$t('common.app'),
-          auth: 'app',
-          icon: 'el-icon-mobile-phone',
-          path: '/app'
-        },
-        {
-          name: this.$t('common.push'),
-          auth: 'push',
-          icon: 'el-icon-s-promotion',
-          path: '/push'
-        },
-        {
-          name: this.$t('common.merchant'),
-          auth: 'merchant',
-          icon: 'el-icon-s-shop',
-          path: '/merchant'
-        },
-        {
-          name: this.$t('common.terminal'),
-          auth: 'terminal',
-          icon: 'el-icon-monitor',
-          path: '/terminal'
-        },
-        {
-          name: this.$t('common.report'),
-          auth: 'report',
-          icon: 'el-icon-files',
-          path: '/report'
-        },
-        {
-          name: this.$t('common.admin'),
-          auth: 'admin',
-          icon: 'el-icon-user',
-          path: '/admin'
-        }
-      ]
-    }
-  },
-  methods: {
-    collapse() {
-      this.isCollapse = !this.isCollapse
+  export default {
+    data() {
+      return {
+        isCollapse: false
+      }
     },
-    checkActive(item) {
-      if (this.$route.name === item.name) {
-        return 'is-active'
-      } else {
-        return ''
+    computed: {
+      menu() {
+        return [
+          {
+            name: this.$t('common.overview'),
+            icon: 'el-icon-menu',
+            auth: 'overview',
+            items: [
+              {
+                name: this.$t('common.dashboard'),
+                auth: 'dashboard',
+                icon: 'el-icon-house',
+                path: '/dashboard'
+              },
+              {
+                name: this.$t('common.geo'),
+                auth: 'geo',
+                icon: 'el-icon-location-outline',
+                path: '/geo'
+              }
+            ]
+          },
+          {
+            name: this.$t('common.app'),
+            auth: 'app',
+            icon: 'el-icon-mobile-phone',
+            path: '/app'
+          },
+          {
+            name: this.$t('common.push'),
+            auth: 'push',
+            icon: 'el-icon-s-promotion',
+            path: '/push'
+          },
+          {
+            name: this.$t('common.merchant'),
+            auth: 'merchant',
+            icon: 'el-icon-s-shop',
+            path: '/merchant'
+          },
+          {
+            name: this.$t('common.terminal'),
+            auth: 'terminal',
+            icon: 'el-icon-monitor',
+            path: '/terminal'
+          },
+          {
+            name: this.$t('common.report'),
+            auth: 'report',
+            icon: 'el-icon-files',
+            path: '/report'
+          },
+          {
+            name: this.$t('common.admin'),
+            auth: 'admin',
+            icon: 'el-icon-user',
+            path: '/admin'
+          }
+        ]
+      }
+    },
+    methods: {
+      collapse() {
+        this.isCollapse = !this.isCollapse
+      },
+      checkActive(item) {
+        if (this.$route.name === item.name) {
+          return 'is-active'
+        } else {
+          return ''
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="less" scoped>
-.el-menu--collapse {
-  .collapse-btn {
-    width: 60px;
-  }
-}
-.collapse-btn {
-  position: fixed;
-  width: 200px;
-  height: 40px;
-  left: 0;
-  bottom: 0;
-  color: #7c7c85;
-  span {
-    display: inline-block;
-    height: 16px;
-  }
-  i {
-    position: absolute;
-    left: 20px;
-  }
-}
-.aside-menu {
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  text-align: left;
-  .el-submenu .el-menu-item {
-    padding-left: 50px !important;
-  }
-  .el-submenu.is-active {
-    border-left: 3px solid #0d305f;
-    background-color: #f7f8fb;
-    .el-submenu__title span {
-      font-weight: bold;
-      color: #023d8b;
+  .el-menu--collapse {
+    .collapse-btn {
+      width: 60px;
     }
-    .el-menu-item {
+  }
+  .collapse-btn {
+    position: fixed;
+    width: 200px;
+    height: 40px;
+    left: 0;
+    bottom: 0;
+    color: #7c7c85;
+    span {
+      display: inline-block;
+      height: 16px;
+    }
+    i {
+      position: absolute;
+      left: 20px;
+    }
+  }
+  .aside-menu {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    text-align: left;
+    .el-submenu .el-menu-item {
+      padding-left: 50px !important;
+    }
+    .el-submenu.is-active {
+      border-left: 3px solid #0d305f;
       background-color: #f7f8fb;
-      &.is-active {
-        border-left: none;
+      .el-submenu__title span {
+        font-weight: bold;
+        color: #023d8b;
+      }
+      .el-menu-item {
+        background-color: #f7f8fb;
+        &.is-active {
+          border-left: none;
+        }
       }
     }
+    .el-menu-item.is-active {
+      color: #023d8b;
+      font-weight: bold;
+      background-color: #f7f8fb;
+      border-left: 3px solid #0d305f;
+    }
   }
-  .el-menu-item.is-active {
-    color: #023d8b;
-    font-weight: bold;
-    background-color: #f7f8fb;
-    border-left: 3px solid #0d305f;
+  .aside-menu:not(.el-menu--collapse) {
+    width: 238px;
+    min-height: 400px;
   }
-}
-.aside-menu:not(.el-menu--collapse) {
-  width: 238px;
-  min-height: 400px;
-}
 </style>

@@ -1,5 +1,5 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import store from '../store'
+import { createRouter, createWebHistory } from 'vue-router'
+import store from '/@/store'
 
 // 开启历史模式
 // vue2中使用 mode: history 实现
@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/common/Login.vue')
+      component: () => import('/@/views/common/Login.vue')
     },
     {
       path: '/',
@@ -20,7 +20,7 @@ const router = createRouter({
       meta: {
         requireAuth: true
       },
-      component: () => import('../views/common/Index.vue'),
+      component: () => import('/@/views/common/Index.vue'),
       children: [
         {
           path: '/dashboard',
@@ -28,7 +28,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/dashboard/Index.vue')
+          component: () => import('/@/views/dashboard/Index.vue')
         },
         {
           path: '/geo',
@@ -36,7 +36,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/geo/Index.vue')
+          component: () => import('/@/views/geo/Index.vue')
         },
         {
           path: '/app',
@@ -44,7 +44,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/app/Index.vue')
+          component: () => import('/@/views/app/Index.vue')
         },
         {
           path: '/push',
@@ -52,7 +52,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/push/Index.vue')
+          component: () => import('/@/views/push/Index.vue')
         },
         {
           path: '/merchant',
@@ -60,7 +60,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/merchant/Index.vue')
+          component: () => import('/@/views/merchant/Index.vue')
         },
         {
           path: '/terminal',
@@ -68,7 +68,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/terminal/Index.vue')
+          component: () => import('/@/views/terminal/Index.vue')
         },
         {
           path: '/report',
@@ -76,7 +76,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/report/Index.vue')
+          component: () => import('/@/views/report/Index.vue')
         },
         {
           path: '/admin',
@@ -84,7 +84,7 @@ const router = createRouter({
           meta: {
             requireAuth: true
           },
-          component: () => import('../views/admin/Index.vue')
+          component: () => import('/@/views/admin/Index.vue')
         }
       ]
     }

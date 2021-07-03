@@ -13,6 +13,7 @@ export default {
     version: '版本',
     required: '必填',
     market: '市场',
+    action: '操作',
     // 菜单
     overview: '总览',
     dashboard: '首页',
@@ -31,6 +32,14 @@ export default {
     login: '登录',
     rememberMe: '记住我',
     forgetPwd: '忘记密码'
+  },
+  user: {
+    firstName: '名',
+    lastName: '姓',
+    cellPhone: '手机号',
+    telePhone: '电话',
+    email: '邮箱',
+    role: '角色'
   },
   vxe: {
     custom: {
@@ -338,5 +347,8 @@ export default {
         }
       }
     }
-  }
+  },
+  '#': '#',
+  'No data!': 'No data!',
+  '没有更多数据了！': '没有更多数据了！'
 }

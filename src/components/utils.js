@@ -58,7 +58,7 @@ export function queryStringify(obj, prefix) {
 }
 
 // export function defaultImg(event) {
-//   event.target.src = require('@/assets/pic.jpg')
+//   event.target.src = require('src/assets/pic.jpg')
 // }
 
 /**
@@ -131,8 +131,8 @@ export const getNow = (fmt) => {
 //   url: '',
 //   data: {}
 // }
-export const download = async function ({url = 'manage/down', data = {}, method = 'get'}) {
-  const res = await this.$request({url, data, method})
+export const download = async function ({ url = 'manage/down', data = {}, method = 'get' }) {
+  const res = await this.$request({ url, data, method })
   const elink = document.createElement('a') // 创建a标签
   const disposition = res.headers['Content-disposition']
   console.log(res.headers, res)
@@ -152,6 +152,7 @@ export const tableConfig = {
   border: false,
   resizable: false,
   autoResize: true,
+  stripe: true,
   height: 'auto',
   highlightHoverRow: true,
   highlightCurrentRow: true,
@@ -160,7 +161,22 @@ export const tableConfig = {
   checkboxConfig: {
     reserve: true
   },
+  toolbarConfig: {
+    slots: {
+      buttons: 'toolbar_buttons'
+    }
+  },
+  filterConfig: {
+    remote: true
+  },
+  sortConfig: {
+    trigger: 'cell',
+    remote: true
+  },
   pagerConfig: {
-    pageSize: 10
+    pageSize: 10,
+    layouts: ['PrevJump', 'PrevPage', 'JumpNumber', 'NextPage', 'NextJump'],
+    background: true,
+    align: 'center'
   }
 }

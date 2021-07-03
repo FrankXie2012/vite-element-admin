@@ -1,6 +1,6 @@
 export default {
   common: {
-    add: 'Add',
+    add: 'New',
     edit: 'Edit',
     delete: 'Delete',
     save: 'Save',
@@ -13,6 +13,7 @@ export default {
     version: 'Version',
     required: 'Required',
     market: 'Market',
+    action: 'Action',
     // menu
     overview: 'Overview',
     dashboard: 'Dashboard',
@@ -31,6 +32,14 @@ export default {
     login: 'Sign in',
     rememberMe: 'Remember me',
     forgetPwd: 'Forget password'
+  },
+  user: {
+    firstName: 'First name',
+    lastName: 'Last name',
+    cellPhone: 'Cellphone',
+    telePhone: 'Telephone',
+    email: 'Email',
+    role: 'Role'
   },
   vxe: {
     custom: {
@@ -342,5 +351,8 @@ export default {
         }
       }
     }
-  }
+  },
+  '#': '#',
+  'No data!': 'No data!',
+  '没有更多数据了！': '没有更多数据了！'
 }
