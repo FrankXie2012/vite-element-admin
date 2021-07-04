@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 const store = createStore({
   state: {
-    username: 'admin',
     lang: localStorage.getItem('lang') || 'zh_CN',
-    userInfo: localStorage.getItem('userInfo') || {},
-    user: localStorage.getItem('user') || {}
+    userInfo:
+      (localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo'))) || {},
+    user: (localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo'))) || {}
   },
   mutations: {
     setLang(state, lang) {
@@ -13,19 +13,19 @@ const store = createStore({
     },
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo
-      localStorage.setItem('userInfo', userInfo)
+      localStorage.setItem('userInfo', JSON.stringify(userInfo) || '')
     },
     setUser(state, user) {
       state.user = user
-      localStorage.setItem('user', user)
+      localStorage.setItem('user', JSON.stringify(user) || '')
     }
   },
   actions: {
-    setLang({ commit }) {
-      commit('setLang')
+    setLang({ commit }, val) {
+      commit('setLang', val)
     },
-    setUserInfo({ commit }) {
-      commit('setUserInfo')
+    setUserInfo({ commit }, val) {
+      commit('setUserInfo', val)
     },
     setUser({ commit }, val) {
       commit('setUser', val)

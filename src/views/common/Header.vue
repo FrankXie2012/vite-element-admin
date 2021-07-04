@@ -43,94 +43,94 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      locale: {lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png'},
-      langList: [
-        {lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png'},
-        {lang: 'en_US', title: 'English', url: 'src/assets/en_US.png'}
-      ]
-    }
-  },
-  computed: {
-    username() {
-      return this.$store.state.username
-    },
-    routeList() {
-      let list = this.$route.path.split('/').filter((v) => !!v)
-      if (list.length < 2) {
-        list.push('list')
+  export default {
+    data() {
+      return {
+        locale: { lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png' },
+        langList: [
+          { lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png' },
+          { lang: 'en_US', title: 'English', url: 'src/assets/en_US.png' }
+        ]
       }
-      return list
-    }
-  },
-  created() {
-    const defaultLang =
-      localStorage.getItem('lang') ||
-      this.$store.state.lang ||
-      navigator.language ||
-      navigator.userLanguage
-    this.locale = this.langList.find((v) => v.lang === defaultLang)
-  },
-  methods: {
-    selectLang(cmd) {
-      this.$i18n.locale = cmd
-      this.locale = this.langList.find((v) => v.lang === cmd)
-      this.$store.commit('setLang', cmd)
+    },
+    computed: {
+      username() {
+        return this.$store.state.userInfo.userName
+      },
+      routeList() {
+        let list = this.$route.path.split('/').filter((v) => !!v)
+        if (list.length < 2) {
+          list.push('list')
+        }
+        return list
+      }
+    },
+    created() {
+      const defaultLang =
+        localStorage.getItem('lang') ||
+        this.$store.state.lang ||
+        navigator.language ||
+        navigator.userLanguage
+      this.locale = this.langList.find((v) => v.lang === defaultLang)
+    },
+    methods: {
+      selectLang(cmd) {
+        this.$i18n.locale = cmd
+        this.locale = this.langList.find((v) => v.lang === cmd)
+        this.$store.commit('setLang', cmd)
+      }
     }
   }
-}
 </script>
 
 <style lang="less">
-.main-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: calc(100vw);
-  padding: 0;
-  background-color: #0d305f;
-  color: #fff;
-  .el-dropdown {
+  .main-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100vw);
+    padding: 0;
+    background-color: #0d305f;
     color: #fff;
+    .el-dropdown {
+      color: #fff;
+    }
   }
-}
-.main-header-left {
-  float: left;
-  padding: 15px;
-  img {
-    margin-left: 10px;
-    width: 170px;
-    height: 30px;
+  .main-header-left {
+    float: left;
+    padding: 15px;
+    img {
+      margin-left: 10px;
+      width: 170px;
+      height: 30px;
+      vertical-align: middle;
+    }
+  }
+  .main-header-menu {
+    float: right;
+  }
+  .main-header-dropdown {
+    cursor: pointer;
+    float: right;
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+    .el-badge__content.is-fixed.is-dot {
+      top: 22px;
+      right: 7px;
+    }
+  }
+  .img-flag {
+    width: 24px;
+    height: 16px;
     vertical-align: middle;
   }
-}
-.main-header-menu {
-  float: right;
-}
-.main-header-dropdown {
-  cursor: pointer;
-  float: right;
-  padding: 0 20px;
-  height: 60px;
-  line-height: 60px;
-  .el-badge__content.is-fixed.is-dot {
-    top: 22px;
-    right: 7px;
+  .main-header-breadcrumb {
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    .el-breadcrumb__inner {
+      color: #fff !important;
+    }
   }
-}
-.img-flag {
-  width: 24px;
-  height: 16px;
-  vertical-align: middle;
-}
-.main-header-breadcrumb {
-  margin-left: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  .el-breadcrumb__inner {
-    color: #fff !important;
-  }
-}
 </style>

@@ -111,6 +111,8 @@ router.beforeEach((to, from, next) => {
   // 这里的meta就是我们刚刚在路由里面配置的meta
   if (to.meta.requireAuth) {
     // 根据store中的token来判断是否登录
+    console.log(store.state.userInfo)
+    console.log(localStorage.getItem('userInfo'))
     if (store.state.userInfo && store.state.userInfo.token) {
       next()
     } else {

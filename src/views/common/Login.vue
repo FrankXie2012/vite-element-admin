@@ -76,7 +76,7 @@
           { lang: 'en_US', title: 'English', url: 'src/assets/en_US.png' }
         ],
         captcha: '',
-        rememberMe: false,
+        rememberMe: true,
         marketList: [],
         form: {
           username: '',
@@ -120,6 +120,7 @@
           method: 'get',
           noHint: true
         })
+        this.form.captcha = ''
         this.captcha = 'data:image/jpeg;base64,' + res.data.image
         this.form.uuid = res.data.uuid
       },
@@ -155,7 +156,7 @@
                 data: this.form
               })
               this.$store.dispatch('setUserInfo', res.data)
-              this.$router.push('dashboard')
+              this.$router.push({ name: 'dashboard' })
             } catch (error) {
               this.getCaptcha()
             }
