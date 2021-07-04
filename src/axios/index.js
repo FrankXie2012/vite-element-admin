@@ -8,10 +8,8 @@ axios.defaults.baseURL = ajax.baseURL || ''
 
 // 添加请求拦截器
 axios.interceptors.request.use((config) => {
-  // const token = store.state.login.userInfo.token
-  // if (config.url !== 'manage/getTokenByUid') {
-  //   config.headers['Authorization'] = token
-  // }
+  const token = store.state.userInfo && store.state.userInfo.token
+  config.headers['Authorization'] = token
   return config
 })
 
@@ -32,7 +30,7 @@ axios.interceptors.response.use(
           const config = error.response.config
           // 重置token
           const token = error.response.data.data
-          const userInfo = Object.assign({}, store.state.login.userInfo, {token: token})
+          const userInfo = Object.assign({}, store.state.userInfo, { token: token })
           store.dispatch('login/setUserInfo', userInfo)
           config.headers['Authorization'] = token
           // 重试当前请求并返回promise
@@ -68,7 +66,7 @@ const request = function (...opt) {
     }
     axios[method](
       opt.url,
-      method === 'get' ? {params: opt.data, ...axiosConfig} : opt.data,
+      method === 'get' ? { params: opt.data, ...axiosConfig } : opt.data,
       axiosConfig
     )
       .then((res) => {

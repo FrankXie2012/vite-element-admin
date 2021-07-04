@@ -149,11 +149,16 @@
               localStorage.setItem('username', '')
               localStorage.setItem('password', '')
             }
-            await this.$request({
-              url: 'login',
-              data: this.form
-            })
-            this.$router.push('dashboard')
+            try {
+              const res = await this.$request({
+                url: 'login',
+                data: this.form
+              })
+              this.$store.dispatch('setUserInfo', res.data)
+              this.$router.push('dashboard')
+            } catch (error) {
+              this.getCaptcha()
+            }
           } else {
             return false
           }

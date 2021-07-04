@@ -85,28 +85,44 @@ const router = createRouter({
             requireAuth: true
           },
           component: () => import('/@/views/admin/Index.vue')
+        },
+        {
+          path: '/admin/add',
+          name: 'adminAdd',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('/@/views/admin/AdminForm.vue')
+        },
+        {
+          path: '/admin/edit',
+          name: 'adminEdit',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('/@/views/admin/AdminForm.vue')
         }
       ]
     }
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   // 这里的meta就是我们刚刚在路由里面配置的meta
-//   if (to.meta.requireAuth) {
-//     // 根据store中的token来判断是否登录
-//     if (store.state.login.userInfo.token) {
-//       next()
-//     } else {
-//       // 没有登录跳转到登录页面，登录成功之后再返回到之前请求的页面
-//       next({
-//         path: '/login'
-//       })
-//     }
-//   } else {
-//     // 不需要登录的，可以继续访问
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  // 这里的meta就是我们刚刚在路由里面配置的meta
+  if (to.meta.requireAuth) {
+    // 根据store中的token来判断是否登录
+    if (store.state.userInfo && store.state.userInfo.token) {
+      next()
+    } else {
+      // 没有登录跳转到登录页面，登录成功之后再返回到之前请求的页面
+      next({
+        path: '/login'
+      })
+    }
+  } else {
+    // 不需要登录的，可以继续访问
+    next()
+  }
+})
 
 export default router

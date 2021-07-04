@@ -1,6 +1,6 @@
 <template>
   <div class="main elevator">
-    <vxe-grid v-bind="gridOptions">
+    <vxe-grid ref="grid" v-bind="gridOptions">
       <template #toolbar_buttons>
         <div class="table-tools">
           <el-input
@@ -8,11 +8,12 @@
             class="search-input"
             :placeholder="$t('common.search')"
             suffix-icon="el-icon-search"
+            @change="searchData"
           />
-          <el-button type="success" size="small" @click="onSubmit">
+          <el-button type="success" size="small" @click="onForm">
             {{ $t('common.add') }}
           </el-button>
-          <el-button type="success" size="small" plain @click="onSubmit">
+          <el-button type="success" size="small" plain @click="onExport">
             {{ $t('common.export') }}
           </el-button>
         </div>
@@ -21,10 +22,10 @@
         {{ row.role === 1 ? '管理员' : '用户' }}
       </template>
       <template #action="{ row }">
-        <el-button type="text" @click="onSubmit(row)">
+        <el-button type="text" @click="onForm(row)">
           {{ $t('common.edit') }}
         </el-button>
-        <el-button type="text" @click="onSubmit">
+        <el-button type="text" @click="onDelete">
           {{ $t('common.delete') }}
         </el-button>
       </template>
@@ -34,23 +35,11 @@
 
 <script>
   import { tableConfig } from '../../components/utils'
-  import { inject, reactive, watch } from 'vue'
   export default {
-    setup() {
-      const $request = inject('$request')
-      // 搜索框
-      const formData = reactive({
-        search: ''
-      })
-      watch(
-        () => formData.search,
-        (val) => {
-          console.log(val)
-        }
-      )
-      // vxe-grid 配置
-      const gridOptions = reactive(
-        Object.assign({}, tableConfig, {
+    data() {
+      return {
+        gridOptions: {
+          ...tableConfig,
           columns: [
             { type: 'checkbox', width: 50 },
             { field: 'username', title: 'login.username', sortable: true },
@@ -90,7 +79,7 @@
             ajax: {
               // 接收 Promise
               query: async ({ page, sorts, filters }) => {
-                const queryParams = Object.assign({}, formData)
+                const queryParams = Object.assign({}, this.formData)
                 // 处理排序条件
                 const firstSort = sorts[0]
                 if (firstSort) {
@@ -101,8 +90,7 @@
                 filters.forEach(({ property, values }) => {
                   queryParams[property] = values.join(',')
                 })
-                console.log(queryParams, formData)
-                const res = await $request({
+                const res = await this.$request({
                   url: 'user/page',
                   data: queryParams
                 })
@@ -119,17 +107,38 @@
               }
             }
           }
-        })
-      )
-      function onSubmit(val) {
-        console.log('on submit', val)
+        },
+        formData: {
+          search: ''
+        }
       }
-      return { gridOptions, formData, onSubmit }
     },
     methods: {
-      // onSubmit() {
-      //   console.log('abc')
-      // }
+      searchData() {
+        console.log(this.formData, this.$refs.grid)
+        this.$refs.grid.updateData()
+      },
+      onForm(val) {
+        if (val && val.id) {
+          this.$store.dispatch('setUser', val)
+          this.$router.push({ name: 'adminEdit' })
+        } else {
+          this.$store.dispatch('setUser', {})
+          this.$router.push({ name: 'adminAdd' })
+        }
+      },
+      onExport(val) {
+        console.log('on submit', val)
+      },
+      async onDelete(val) {
+        console.log('on submit', val)
+        await this.$request({
+          url: 'user/delete',
+          data: {
+            ids: val.id
+          }
+        })
+      }
     }
   }
 </script>
