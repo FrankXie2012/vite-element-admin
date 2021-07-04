@@ -8,7 +8,7 @@
             class="search-input"
             :placeholder="$t('common.search')"
             suffix-icon="el-icon-search"
-            @change="searchData"
+            @change="$refs.grid.commitProxy('query')"
           />
           <el-button type="success" size="small" @click="onForm">
             {{ $t('common.add') }}
@@ -25,7 +25,7 @@
         <el-button type="text" @click="onForm(row)">
           {{ $t('common.edit') }}
         </el-button>
-        <el-button type="text" @click="onDelete">
+        <el-button type="text" @click="onDelete(row)">
           {{ $t('common.delete') }}
         </el-button>
       </template>
@@ -38,7 +38,18 @@
   export default {
     data() {
       return {
-        gridOptions: {
+        gridOptions: {},
+        formData: {
+          search: ''
+        }
+      }
+    },
+    created() {
+      this.initTable()
+    },
+    methods: {
+      initTable() {
+        this.gridOptions = {
           ...tableConfig,
           columns: [
             { type: 'checkbox', width: 50 },
@@ -107,16 +118,7 @@
               }
             }
           }
-        },
-        formData: {
-          search: ''
         }
-      }
-    },
-    methods: {
-      searchData() {
-        console.log(this.formData, this.$refs.grid)
-        this.$refs.grid.updateData()
       },
       onForm(val) {
         if (val && val.id) {
@@ -128,15 +130,21 @@
         }
       },
       onExport(val) {
-        console.log('on submit', val)
+        console.log('on export', val)
       },
       async onDelete(val) {
-        console.log('on submit', val)
-        await this.$request({
-          url: 'user/delete',
-          data: {
-            ids: val.id
-          }
+        this.$confirm(this.$t('hint.delete'), this.$t('common.hint'), {
+          confirmButtonText: this.$t('common.ok'),
+          cancelButtonText: this.$t('common.cancel'),
+          type: 'warning'
+        }).then(async () => {
+          await this.$request({
+            url: 'user/delete',
+            data: {
+              ids: val.id
+            }
+          })
+          this.$refs.grid.commitProxy('query')
         })
       }
     }

@@ -59,6 +59,13 @@
     }
   }
 
+  .common-card {
+    margin: 20px;
+    width: 100%;
+    height: calc(100vh - 102px);
+    overflow: auto;
+  }
+
   /* 滚动条样式 */
   /* width */
   ::-webkit-scrollbar {

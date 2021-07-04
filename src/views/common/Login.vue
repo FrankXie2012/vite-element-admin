@@ -70,10 +70,10 @@
   export default {
     data() {
       return {
-        locale: { lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png' },
+        locale: { lang: 'zh_CN', title: '简体中文', url: '/@/assets/zh_CN.png' },
         langList: [
-          { lang: 'zh_CN', title: '简体中文', url: 'src/assets/zh_CN.png' },
-          { lang: 'en_US', title: 'English', url: 'src/assets/en_US.png' }
+          { lang: 'zh_CN', title: '简体中文', url: '/@/assets/zh_CN.png' },
+          { lang: 'en_US', title: 'English', url: '/@/assets/en_US.png' }
         ],
         captcha: '',
         rememberMe: true,

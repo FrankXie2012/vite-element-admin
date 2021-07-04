@@ -14,6 +14,9 @@ export default {
     required: '必填',
     market: '市场',
     action: '操作',
+    hint: '提示',
+    ok: '确定',
+    cancel: '取消',
     // 菜单
     overview: '总览',
     dashboard: '首页',
@@ -24,6 +27,9 @@ export default {
     terminal: '终端管理',
     report: '报告管理',
     admin: '系统管理'
+  },
+  hint: {
+    delete: '将删除选中项，确定吗？'
   },
   login: {
     username: '用户名',

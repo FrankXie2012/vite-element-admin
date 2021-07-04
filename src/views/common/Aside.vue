@@ -10,7 +10,7 @@
     <template v-for="sub in menu" :key="sub.path">
       <el-menu-item
         v-if="!sub.items && $authCheck(sub.auth)"
-        :index="sub.auth"
+        :index="sub.path"
         :class="checkActive(sub)"
       >
         <i :class="sub.icon"></i>
@@ -51,13 +51,11 @@
               {
                 name: this.$t('common.dashboard'),
                 auth: 'dashboard',
-                icon: 'el-icon-house',
                 path: '/dashboard'
               },
               {
                 name: this.$t('common.geo'),
                 auth: 'geo',
-                icon: 'el-icon-location-outline',
                 path: '/geo'
               }
             ]

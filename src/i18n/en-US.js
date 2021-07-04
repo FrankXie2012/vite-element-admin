@@ -14,6 +14,9 @@ export default {
     required: 'Required',
     market: 'Market',
     action: 'Action',
+    hint: 'Hint',
+    ok: 'OK',
+    cancel: 'Cancel',
     // menu
     overview: 'Overview',
     dashboard: 'Dashboard',
@@ -24,6 +27,9 @@ export default {
     terminal: 'Terminal',
     report: 'Report',
     admin: 'Admin'
+  },
+  hint: {
+    delete: 'Are you sure to delete the selected item?'
   },
   login: {
     username: 'Username',

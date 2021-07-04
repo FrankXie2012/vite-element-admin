@@ -26,12 +26,13 @@ axios.interceptors.response.use(
           window.location.href = '/login'
           break
         case 402:
+          debugger
           // 获取当前失败的请求
           const config = error.response.config
           // 重置token
           const token = error.response.data.data
           const userInfo = Object.assign({}, store.state.userInfo, { token: token })
-          store.dispatch('login/setUserInfo', userInfo)
+          store.dispatch('setUserInfo', userInfo)
           config.headers['Authorization'] = token
           // 重试当前请求并返回promise
           return axios(config)
